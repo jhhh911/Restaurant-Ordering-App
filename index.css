@@ -4,7 +4,14 @@ body {
   font-family: "Arimo", sans-serif;
   border: 1px solid black;
   width: 100%;
+  font-size: 16px;
 }
+
+button {
+  cursor: pointer;
+}
+
+/* Header */
 
 .header {
   background-image: url(./images/header_image.jpeg);
@@ -35,4 +42,70 @@ h1 {
 
 h2 {
   font-size: 25px;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Content */
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.content {
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  margin-top: 10px;
+}
+
+.emoji {
+  font-size: 75px;
+}
+
+.ingredients {
+  color: #979797;
+  margin-bottom: 0px;
+}
+
+.order-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #979797;
+  margin-right: 45px;
+  font-size: 32px;
+  font-family: 'Inter';
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+}
+
+.order-btn:hover {
+  background-color: limegreen;
+  color: white;
+  border: 1px solid #ffffff;
+}
+
+.order-btn:active {
+  opacity: 0.7;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #979797;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
 }
