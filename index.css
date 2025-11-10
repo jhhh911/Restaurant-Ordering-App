@@ -1,8 +1,11 @@
+/* * {
+  border: 1px solid red;
+} */
+
 body {
   margin: 0 auto;
   padding: 0;
   font-family: "Arimo", sans-serif;
-  border: 1px solid black;
   width: 100%;
   font-size: 16px;
 }
@@ -23,14 +26,14 @@ button {
   justify-content: center;
   background-repeat: no-repeat;
   width: 100%;
-  
 }
 
 .header img {
   display: none;
 }
 
-.header h1, h2 {
+.header h1,
+h2 {
   margin: 0 0 10px 45px;
   text-shadow: 0 0 10px #fff;
   color: #000000;
@@ -41,7 +44,7 @@ h1 {
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 28px;
 }
 
 .bold {
@@ -85,27 +88,103 @@ h2 {
   border: 1px solid #979797;
   margin-right: 45px;
   font-size: 32px;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 100;
   display: flex;
   justify-content: center;
 }
 
 .order-btn:hover {
-  background-color: limegreen;
+  background-color: #4C1D95;
   color: white;
   border: 1px solid #ffffff;
 }
 
-.order-btn:active {
+.order-btn:active,
+.complete-btn:active {
   opacity: 0.7;
 }
 
 .border-bottom {
   border-bottom: 1px solid #979797;
+  width: 90%;
+  justify-self: center;
 }
 
-.footer-content {
+/* Footer */
+
+.footer {
+  display: none;
+}
+
+.footer-active {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-title {
+  text-align: center;
+  margin-top: 45px;
+}
+
+.footer h3 {
+  display: inline-block;
+  margin-right: 0;
+}
+
+.item-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  display: inline-block;
+  margin-right: 50px;
+}
+
+/* .item-content, */
+.total-content {
   display: flex;
   justify-content: space-between;
+  margin-left: 40px;
+}
+
+.remove-btn {
+  color: #979797;
+  border: none;
+  font-family: Verdana, Tahoma, sans-serif;
+  margin-left: 13px;
+  display: inline-block;
+  margin-left: 0;
+  font-size: 12px;
+}
+
+.remove-btn:hover {
+  font-weight: bold;
+}
+
+.border-bottom-black {
+  border-bottom: 1px solid black;
+  width: 90%;
+  align-self: center;
+}
+
+.complete-btn {
+  background-color: #16db99;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  height: 60px;
+  justify-self: center;
+  align-self: center;
+  font-size: 18px;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.complete-btn:hover {
+  background-color: #4C1D95;
 }
