@@ -1,6 +1,7 @@
 import { menuArray } from "./data.js";
 
 const orderArray = [];
+let priceArray = [];
 
 function renderItems() {
   return menuArray
@@ -27,21 +28,22 @@ function renderItems() {
 document.getElementById("main").innerHTML = renderItems();
 
 const footer = document.querySelector(".footer");
-const itemContainer = document.querySelector('.order-title')
+const itemContainer = document.querySelector(".order-title");
+const totalPrice = document.getElementById("price");
 
 document.addEventListener("click", function (e) {
   if (e.target.dataset.add) {
     openOrderSummary(e.target.dataset.add);
-    
   }
 });
 
 function openOrderSummary(orderId) {
-  let order = ''
+  let order = "";
   menuArray.forEach(item => {
-    if(item.id === Number(orderId)) {
-      orderArray.push(item)
-      footer.classList.add('footer-active')
+    if (item.id === Number(orderId)) {
+      orderArray.push(item);
+      priceArray.push(item.price);
+      footer.classList.add("footer-active");
       order += `
     <div class="item-content">
         <div class="item">
@@ -50,9 +52,13 @@ function openOrderSummary(orderId) {
         </div>
         <p class="bold price">$${item.price}</p>
       </div>
-  `
-  itemContainer.innerHTML += order
-    } 
+  `;
+      itemContainer.innerHTML += order;
+    }
   });
-}
 
+  let value = (priceArray.reduce((acc, cur) => {
+    return acc + cur;
+  }));
+  totalPrice.innerHTML = `$${value}`
+}
