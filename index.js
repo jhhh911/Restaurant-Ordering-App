@@ -3,6 +3,19 @@ import { menuArray } from "./data.js";
 const orderArray = [];
 let priceArray = [];
 
+const footer = document.querySelector(".footer");
+const itemContainer = document.querySelector(".order-title");
+const totalPrice = document.getElementById("price");
+
+document.addEventListener("click", function (e) {
+  if (e.target.dataset.add) {
+    openOrderSummary(e.target.dataset.add);
+  } 
+  // else if (e.target.classList.contains("remove-btn")) {
+  //   handleRemove(e.target);
+  // }
+});
+
 function renderItems() {
   return menuArray
     .map(item => {
@@ -27,23 +40,15 @@ function renderItems() {
 
 document.getElementById("main").innerHTML = renderItems();
 
-const footer = document.querySelector(".footer");
-const itemContainer = document.querySelector(".order-title");
-const totalPrice = document.getElementById("price");
-
-document.addEventListener("click", function (e) {
-  if (e.target.dataset.add) {
-    openOrderSummary(e.target.dataset.add);
-  }
-});
-
 function openOrderSummary(orderId) {
   let order = "";
   menuArray.forEach(item => {
     if (item.id === Number(orderId)) {
       orderArray.push(item);
       priceArray.push(item.price);
-      footer.classList.add("footer-active");
+      if (!footer.classList.contains("footer-active")) {
+        footer.classList.add("footer-active");
+      }
       order += `
     <div class="item-content">
         <div class="item">
@@ -53,12 +58,29 @@ function openOrderSummary(orderId) {
         <p class="bold price">$${item.price}</p>
       </div>
   `;
-      itemContainer.innerHTML += order;
+      itemContainer.insertAdjacentHTML("beforeend", order);
     }
   });
 
-  let value = (priceArray.reduce((acc, cur) => {
-    return acc + cur;
-  }));
-  totalPrice.innerHTML = `$${value}`
+  let value = priceArray.reduce((acc, cur) => acc + cur, 0);
+  totalPrice.innerHTML = `$${value}`;
 }
+
+// function handleRemove(buttonEl) {
+//   const itemName = buttonEl.previousElementSibling.textContent.trim();
+
+//   const index = orderArray.findIndex(item => item.name === itemName);
+//   if (index !== -1) {
+//     orderArray.splice(index, 1)
+//     priceArray.splice(index, 1)
+//   }
+
+//   buttonEl.closest('.item-content').remove()
+
+//   const newTotal = priceArray.reduce((acc, cur) => acc + cur, 0)
+//   totalPrice.textContent = `$${newTotal}`
+
+//   if (priceArray.length === 0) {
+//     footer.classList.remove('footer-active')
+//   }
+// }
