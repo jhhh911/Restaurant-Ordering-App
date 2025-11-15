@@ -1,19 +1,17 @@
 import { menuArray } from "./data.js";
 
 const orderArray = [];
-let priceArray = [];
 
 const footer = document.querySelector(".footer");
-const itemContainer = document.querySelector(".order-title");
+const itemContainer = document.querySelector(".order-container");
 const totalPrice = document.getElementById("price");
 
 document.addEventListener("click", function (e) {
   if (e.target.dataset.add) {
     openOrderSummary(e.target.dataset.add);
-  } 
-  // else if (e.target.classList.contains("remove-btn")) {
-  //   handleRemove(e.target);
-  // }
+  } else if (e.target.classList.contains("remove-btn")) {
+    handleRemove(e.target);
+  }
 });
 
 function renderItems() {
@@ -40,6 +38,8 @@ function renderItems() {
 
 document.getElementById("main").innerHTML = renderItems();
 
+const priceArray = [];
+
 function openOrderSummary(orderId) {
   let order = "";
   menuArray.forEach(item => {
@@ -51,14 +51,15 @@ function openOrderSummary(orderId) {
       }
       order += `
     <div class="item-content">
-        <div class="item">
-          <h3>${item.name}</h3>
-          <button class="remove-btn">remove</button>
-        </div>
-        <p class="bold price">$${item.price}</p>
-      </div>
+    <div class="item">
+      <h3>${item.name}</h3>
+      <button class="remove-btn" data-remove="${item.id}">remove</button>
+    </div>
+    <p class="bold price">$${item.price}</p>
+  </div>
   `;
-      itemContainer.insertAdjacentHTML("beforeend", order);
+
+      itemContainer.innerHTML += order
     }
   });
 
@@ -66,21 +67,16 @@ function openOrderSummary(orderId) {
   totalPrice.innerHTML = `$${value}`;
 }
 
-// function handleRemove(buttonEl) {
-//   const itemName = buttonEl.previousElementSibling.textContent.trim();
-
-//   const index = orderArray.findIndex(item => item.name === itemName);
-//   if (index !== -1) {
-//     orderArray.splice(index, 1)
-//     priceArray.splice(index, 1)
-//   }
-
-//   buttonEl.closest('.item-content').remove()
-
-//   const newTotal = priceArray.reduce((acc, cur) => acc + cur, 0)
-//   totalPrice.textContent = `$${newTotal}`
-
-//   if (priceArray.length === 0) {
-//     footer.classList.remove('footer-active')
-//   }
-// }
+function handleRemove(buttonEl) {
+  // var to find the id of deleted item
+  const orderId = Number(buttonEl.dataset.remove)
+  // find the index of the order in the Order array
+  const index = orderArray.findIndex(item => item.id === orderId)
+  if (index !== -1) {
+    orderArray.splice(index, 1)
+    priceArray.splice(index, 1)
+  }
+  if(orderArray.length === 0) {
+    footer.classList.remove('footer-active')
+  }
+}
