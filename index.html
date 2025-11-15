@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Smythe&display=swap"
       rel="stylesheet"
     />
     <title>Jimmy's Diner</title>
@@ -23,23 +23,27 @@
   </head>
   <body>
     <header class="header">
-      <img src="" alt="Big burger with crunchy onion with bbq sauce on the side" />
-      <h1>Jimbob Fashion</h1>
-      <h2>The best suits and styles in town.</h2>
+      <img
+        src=""
+        alt="Big burger with crunchy onion with bbq sauce on the side"
+      />
+      <h1 class="title">Jimmy's Diner</h1>
+      <h2 class="subtitle">The best burgers and pizzas in town.</h2>
     </header>
-    <main class="main" id="main">
-    </main>
+    <main>
+      <section class="menu-container" id="menu-container"></section>
 
-    <footer class="footer" id="footer">
-      <h2 class="order-title">Your Order</h2>
-      <div class="order-container"></div>
-    <div class="border-bottom-black"></div>
-      <div class="total-content">
-        <h3>Total price:</h3>
-        <p class="bold price" id="price">$</p>
-      </div>
-      <button class="complete-btn">Complete order</button>
-    </footer>
+      <section class="order-container" id="order-container">
+        <h3 class="order-title">Your Order</h3>
+        <div id="order"></div>
+        <div class="border-bottom"></div>
+        <div class="total">
+          <p class="order-total-title">Total Price:</p>
+          <p class="total-order-price" id="total"></p>
+        </div>
+        <button class="complete-order-btn" id="order-btn">Complete order</button>
+      </section>
+    </main>
     <script src="index.js" type="module"></script>
   </body>
 </html>
