@@ -214,3 +214,13 @@ input::placeholder {
   font-size: 20px;
   padding-left: 25px;
 }
+
+/* order message */
+.message-container {
+  background-color: #ecfdf5;
+  text-align: center;
+}
+
+.message-container h4 {
+  font-size: 32px;
+}

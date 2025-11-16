@@ -3,6 +3,7 @@ import { menuArray } from "./data.js";
 const orderContainer = document.getElementById("order-container");
 const orderList = document.getElementById("order");
 const modalEl = document.getElementById('modal');
+const payMsg = document.getElementById("pay-message");
 
 let orderArray = [];
 
@@ -30,6 +31,7 @@ document.getElementById("menu-container").innerHTML = menuHTML;
 document.addEventListener("click", e => {
   if (e.target.dataset.add) {
     addItemToOrder(e.target.dataset.add);
+    payMsg.style.display = 'none'
   } else if (e.target.dataset.delete) {
     deleteItemFromOrder(e.target.dataset.delete);
   }
@@ -119,3 +121,11 @@ document.getElementById('order-btn').addEventListener('click', function() {
   modalEl.style.display = 'flex';
   orderContainer.style.display = 'none';
 });
+
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  modalEl.style.display = 'none'
+  payMsg.style.display = 'block';
+  orderArray = []
+  orderList.innerHTML = '';
+})
