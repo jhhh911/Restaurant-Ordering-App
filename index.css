@@ -17,6 +17,12 @@ body {
   display: flex;
 }
 
+button,
+.fa-trash {
+  cursor: pointer;
+}
+
+
 /* Header */
 
 .header {
@@ -45,10 +51,6 @@ body {
 
 .subtitle {
   font-size: 23px;
-}
-
-button {
-  cursor: pointer;
 }
 
 /* Menu items */
@@ -83,7 +85,7 @@ button {
 
 .item-ingredients {
   color: #ababab;
-  margin-bottom: 0px;
+  margin: 0 0 8px 0;
 }
 
 .item-price {
@@ -92,7 +94,7 @@ button {
 }
 
 .add-btn {
-  font-family: 'Inter',Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 100;
   color: #3c3c3c;
@@ -150,7 +152,6 @@ button {
 }
 
 .fa-trash {
-  cursor: pointer;
   font-size: 16px;
 }
 

@@ -7,8 +7,7 @@ let orderArray = [];
 
 // Render Menu
 const menuHTML = menuArray
-  .map(item => {
-    const { name, ingredients, id, price, emoji } = item;
+  .map(({ name, ingredients, id, price, emoji }) => {
     return `
       <div class="menu-item">
         <div class='menu-content'>
@@ -52,11 +51,6 @@ function addItemToOrder(itemId) {
   calculateOrderTotal();
 }
 
-//show/hide order container
-function renderOrderData() {
-  orderContainer.style.display = orderArray.length > 0 ? "block" : "none";
-}
-
 // render individual order item
 function renderOrderItem(item) {
   orderList.innerHTML += `
@@ -94,13 +88,14 @@ if (!item) return;
   } else {
     const index = orderArray.indexOf(item)
     orderArray.splice(index, 1);
+
+    const orderEl = document.getElementById(`order-${item.id}`);
+    if (orderEl) orderEl.remove();
   }
 
   renderOrderData()
   calculateOrderTotal()
 }
-
-//show/hide order container
 
 // calculate total price
 function calculateOrderTotal() {
@@ -109,6 +104,11 @@ function calculateOrderTotal() {
     0
   );
   document.getElementById('total').innerHTML = `$${total}`;
+}
+
+//show/hide order container
+function renderOrderData() {
+  orderContainer.style.display = orderArray.length > 0 ? "block" : "none";
 }
 
 // bring up the pay form & message
