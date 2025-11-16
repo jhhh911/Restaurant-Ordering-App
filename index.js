@@ -2,6 +2,7 @@ import { menuArray } from "./data.js";
 
 const orderContainer = document.getElementById("order-container");
 const orderList = document.getElementById("order");
+const modalEl = document.getElementById('modal');
 
 let orderArray = [];
 
@@ -111,4 +112,10 @@ function renderOrderData() {
   orderContainer.style.display = orderArray.length > 0 ? "block" : "none";
 }
 
+renderOrderData()
+
 // bring up the pay form & message
+document.getElementById('order-btn').addEventListener('click', function() {
+  modalEl.style.display = 'flex';
+  orderContainer.style.display = 'none';
+});
