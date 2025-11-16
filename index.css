@@ -181,3 +181,8 @@ button,
 .complete-order-btn:hover {
   background-color: #4C1D95;
 }
+
+/* Payment form */
+.modal-container {
+  display: flex;
+}

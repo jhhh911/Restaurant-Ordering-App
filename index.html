@@ -22,6 +22,7 @@
     />
   </head>
   <body>
+    <!-- Header -->
     <header class="header">
       <img
         src=""
@@ -33,6 +34,7 @@
     <main>
       <section class="menu-container" id="menu-container"></section>
 
+      <!-- Order container -->
       <section class="order-container" id="order-container">
         <h3 class="order-title">Your Order</h3>
         <div id="order"></div>
@@ -41,7 +43,46 @@
           <p class="order-total-title">Total Price:</p>
           <p class="total-order-price" id="total"></p>
         </div>
-        <button class="complete-order-btn" id="order-btn">Complete order</button>
+        <button class="complete-order-btn" id="order-btn">
+          Complete order
+        </button>
+      </section>
+
+      <section class="modal-container" id="modal">
+        <h3 class="modal-title">Enter Card Details</h3>
+        <form id="form">
+          <label for="user-name"></label>
+          <input
+            type="text"
+            id="user-name"
+            placeholder="Enter your name"
+            required
+          />
+          <br>
+          <label for="user-card-number"></label>
+          <input
+            type="tel"
+            inputmode="numeric"
+            id="user-card-number"
+            placeholder="Enter card number"
+            maxlength="19"
+            pattern="[0-9\s]{13,19}"
+            required
+          />
+          <br>
+          <label for="ccv"></label>
+          <input
+            type="tel"
+            inputmode="numeric"
+            id="ccv"
+            placeholder="Enter ccv"
+            maxlength="3"
+            pattern="[0-9\s]{3}"
+            required
+          />
+          <br>
+          <button class="pay-btn" type="submit">Pay</button>
+        </form>
       </section>
     </main>
     <script src="index.js" type="module"></script>
