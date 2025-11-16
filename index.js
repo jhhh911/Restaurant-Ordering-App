@@ -9,7 +9,7 @@ let orderArray = [];
 const menuHTML = menuArray
   .map(item => {
     const { name, ingredients, id, price, emoji } = item;
-      return `
+    return `
       <div class="menu-item">
         <div class='menu-content'>
           <p class="emoji" aria-label='${name}'>${emoji}</p>
@@ -22,11 +22,10 @@ const menuHTML = menuArray
         <button class="add-btn" data-add='${id}'>+</button>
       </div>
     `;
-    })
-    .join("");
+  })
+  .join("");
 
 document.getElementById("menu-container").innerHTML = menuHTML;
-
 
 document.addEventListener("click", e => {
   if (e.target.dataset.add) {
@@ -39,23 +38,23 @@ document.addEventListener("click", e => {
 // add item to order
 
 function addItemToOrder(itemId) {
-  const matchingItem = menuArray.find(item => item.id === Number(itemId))
-  const existingItem = orderArray.find(item => item.id === Number(itemId))
-    if (!existingItem) {
-      matchingItem.quantity = 1;
-      orderArray.push(matchingItem);
-      renderOrderItem(matchingItem);
-    } else {
-      existingItem.quantity++
-      updateOrderItem(matchingItem);
-    }
-    renderOrderData()
-    calculateOrderTotal()
+  const matchingItem = menuArray.find(item => item.id === Number(itemId));
+  const existingItem = orderArray.find(item => item.id === Number(itemId));
+  if (!existingItem) {
+    matchingItem.quantity = 1;
+    orderArray.push(matchingItem);
+    renderOrderItem(matchingItem);
+  } else {
+    existingItem.quantity++;
+    updateOrderItem(matchingItem);
+  }
+  renderOrderData();
+  calculateOrderTotal();
 }
 
 //show/hide order container
 function renderOrderData() {
-  orderContainer.style.display = orderArray.length > 0 ? 'block' : 'none';
+  orderContainer.style.display = orderArray.length > 0 ? "block" : "none";
 }
 
 // render individual order item
@@ -76,32 +75,40 @@ function renderOrderItem(item) {
 
 function updateOrderItem(item) {
   document.getElementById(
-    `order-quantity-${item.id}`).innerHTML = `x ${item.quantity}`;
+    `order-quantity-${item.id}`
+  ).innerHTML = `x ${item.quantity}`;
   document.getElementById(`order-price-${item.id}`).innerHTML = `$${
     item.price * item.quantity
   }`;
 }
 
 // Delete item from order
-function deleteItemFromOrder(buttonEl) {
-  // var to find the id of deleted item
-  const orderId = Number(buttonEl.dataset.remove)
-  // find the index of the order in the Order array
-  const index = orderArray.findIndex(item => item.id === orderId)
-  if (index !== -1) {
-    orderArray.splice(index, 1)
+function deleteItemFromOrder(itemId) {
+  const item = orderArray.find(i => i.id === Number(itemId));
+
+if (!item) return;
+
+  if (item.quantity > 1) {
+    item.quantity--
+    updateOrderItem(item)
+  } else {
+    const index = orderArray.indexOf(item)
+    orderArray.splice(index, 1);
   }
-  if(orderArray.length === 0) {
-    footer.classList.remove('footer-active')
-  }
+
+  renderOrderData()
+  calculateOrderTotal()
 }
 
 //show/hide order container
 
 // calculate total price
 function calculateOrderTotal() {
-  const total = orderArray.reduce((acc, cur) => acc + cur, 0);
-  totalPrice.innerHTML = `$${total}`;
+  const total = orderArray.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  document.getElementById('total').innerHTML = `$${total}`;
 }
 
 // bring up the pay form & message
