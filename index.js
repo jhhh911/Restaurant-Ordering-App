@@ -28,6 +28,7 @@ const menuHTML = menuArray
 
 document.getElementById("menu-container").innerHTML = menuHTML;
 
+// Event listeners
 document.addEventListener("click", e => {
   if (e.target.dataset.add) {
     addItemToOrder(e.target.dataset.add);
@@ -40,13 +41,17 @@ document.addEventListener("click", e => {
 // add item to order
 
 function addItemToOrder(itemId) {
+  // Variables created for item selection and if that item is already in the order
   const matchingItem = menuArray.find(item => item.id === Number(itemId));
   const existingItem = orderArray.find(item => item.id === Number(itemId));
   if (!existingItem) {
+    // Gives new order item a quantity, pushes the object into the orderArray and 
+    // render it to the order screen
     matchingItem.quantity = 1;
     orderArray.push(matchingItem);
     renderOrderItem(matchingItem);
   } else {
+    // Order item is already in orderArray so just increase the quantity and amend order screen
     existingItem.quantity++;
     updateOrderItem(matchingItem);
   }
@@ -54,7 +59,7 @@ function addItemToOrder(itemId) {
   calculateOrderTotal();
 }
 
-// render individual order item
+// render item to order screen
 function renderOrderItem(item) {
   orderList.innerHTML += `
     <div class='order-items' id='order-${item.id}'>
@@ -68,7 +73,7 @@ function renderOrderItem(item) {
   `;
 }
 
-// Update item quantity & price in DOM
+// Update item quantity & price in order screen
 
 function updateOrderItem(item) {
   document.getElementById(
